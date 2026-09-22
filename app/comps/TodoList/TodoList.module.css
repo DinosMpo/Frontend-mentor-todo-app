@@ -1,0 +1,29 @@
+#todo-list-container {
+    height: 440px;
+    background-color: white;
+    border-radius: 5px;
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 15px grey;
+    
+}
+
+#todo-options {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    /* border: 1px solid black; */
+    box-sizing: border-box;
+    padding: 16px;
+    color: grey;
+}
+
+#todo-options-wrapper {
+    display: flex;
+    width: 100%;
+    max-width: 164px;
+    /* border: 1px solid black; */
+    justify-content: space-between;
+}

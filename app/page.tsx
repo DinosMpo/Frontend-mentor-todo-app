@@ -1,69 +1,51 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./page.module.css";
+import TodoList from "./comps/TodoList/TodoList";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>
-            To get started, edit the{" "}
-            <code className={styles.code}>page.tsx</code> file.
-          </h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+    <div id={styles["main-container"]}>
+      <Image
+        alt="bg desktop"
+        src={"/bg-desktop-light.jpg"}
+        size="100vw"
+        width={1440}
+        height={300}
+        id={styles["bg-image"]}
+        loading="eager"
+      />
+
+      <div id={styles["todo-container"]}>
+        <div id={styles["todo-nav"]}>
+          <div id={styles["todo-title"]}>T O D O</div>
+          <div>
             <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+              alt="dark or light mode"
+              src="/icon-moon.svg"
+              width={26}
+              height={26}
+              loading="eager"
             />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+          </div>
         </div>
-      </main>
+        <div id={styles["add-todo"]}>
+          <div id={styles["check-circle"]}></div>
+          <input placeholder="Create a new todo..." />
+        </div>
+        <TodoList />
+      </div>
+
+      <div>Drag and drop to reorder list</div>
+
+      <footer className="attribution">
+        Challenge by{" "}
+        <a href="https://www.frontendmentor.io?ref=challenge">
+          Frontend Mentor
+        </a>
+        . Coded by <a href="#">Your Name Here</a>.
+      </footer>
     </div>
   );
 }
