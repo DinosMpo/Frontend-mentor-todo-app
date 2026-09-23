@@ -1,10 +1,39 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
+import AddTodo from "./comps/AddTodo/AddTodo";
 import TodoList from "./comps/TodoList/TodoList";
 
 export default function Home() {
+  const [todoItems, setTodoItems] = useState([
+    {
+      checked: false,
+      value: "Complete Todo App on Fronend Mentor",
+    },
+    {
+      checked: false,
+      value: "Pick up grocereies",
+    },
+    {
+      checked: false,
+      value: "Read for 1 hour",
+    },
+    {
+      checked: false,
+      value: "10 minutes meditation",
+    },
+    {
+      checked: false,
+      value: "Jog around the park 3x",
+    },
+    {
+      checked: true,
+      value: "Complete online Javascript course",
+    },
+  ]);
+
   return (
     <div id={styles["main-container"]}>
       <Image
@@ -30,11 +59,9 @@ export default function Home() {
             />
           </div>
         </div>
-        <div id={styles["add-todo"]}>
-          <div id={styles["check-circle"]}></div>
-          <input placeholder="Create a new todo..." />
-        </div>
-        <TodoList />
+
+        <AddTodo todoItems={todoItems} setTodoItems={setTodoItems} />
+        <TodoList todoItems={todoItems} setTodoItems={setTodoItems} />
       </div>
 
       <div>Drag and drop to reorder list</div>

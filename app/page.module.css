@@ -38,34 +38,3 @@
   font-weight: 700;
   color: white;
 }
-
-#add-todo {
-  height: 65px;
-  display: flex;
-  width: 100%;
-  flex-direction: row;
-  align-items: center;
-  border-radius: 5px;
-  background-color: white;
-  box-sizing: border-box;
-  margin-top: 40px;
-}
-
-#check-circle {
-  width: 29px;
-  height: 25px;
-  border: 1px solid hsl(236, 9%, 61%);
-  border-radius: 50px;
-  margin: 25px;
-}
-
-#add-todo input {
-  font-size: 16px;
-  width: 100%;
-  height: 100%;
-  border-radius: 5px;
-  outline: 0px;
-  border: 0px;
-  padding: 0px;
-  font-family: 'Josefin Sans';
-}
