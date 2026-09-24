@@ -39,7 +39,6 @@ export default function Home() {
       <Image
         alt="bg desktop"
         src={"/bg-desktop-light.jpg"}
-        size="100vw"
         width={1440}
         height={300}
         id={styles["bg-image"]}
