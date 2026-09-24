@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 15px grey;
+  position: relative;
 }
 
 #todo-list-wrapper {
@@ -23,10 +24,21 @@
   color: grey;
 }
 
+#todo-options-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
 #todo-options-wrapper {
   display: flex;
   width: 100%;
   max-width: 164px;
   /* border: 1px solid black; */
   justify-content: space-between;
+}
+
+#active-all, #active-active, #active-completed {
+  color: hsl(235, 19%, 35%);
+  font-weight: 700;
 }
