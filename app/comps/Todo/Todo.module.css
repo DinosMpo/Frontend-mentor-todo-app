@@ -1,13 +1,10 @@
-#todo-container {
+.todo-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     padding-left: 25px;
     box-sizing: border-box;
     border-bottom: 1px solid hsl(233, 11%, 84%);
-
-    /* border: 1px solid black; */
-    /* box-shadow: 5px 5px 5px black; */
 }
 
 .todo-checked {
