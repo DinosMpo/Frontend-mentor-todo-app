@@ -1,34 +1,43 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
 import AddTodo from "./comps/AddTodo/AddTodo";
 import TodoList from "./comps/TodoList/TodoList";
 
 export default function Home() {
+  const todoIndex = useRef(5);
+  console.log("todoIndex.current");
+  console.log(todoIndex.current.valueOf());
   const [todoItems, setTodoItems] = useState([
     {
+      id: 0,
       checked: false,
       value: "Complete Todo App on Fronend Mentor",
     },
     {
+      id: 1,
       checked: false,
       value: "Pick up grocereies",
     },
     {
+      id: 2,
       checked: false,
       value: "Read for 1 hour",
     },
     {
+      id: 3,
       checked: false,
       value: "10 minutes meditation",
     },
     {
+      id: 4,
       checked: false,
       value: "Jog around the park 3x",
     },
     {
+      id: 5,
       checked: true,
       value: "Complete online Javascript course",
     },
@@ -59,7 +68,11 @@ export default function Home() {
           </div>
         </div>
 
-        <AddTodo todoItems={todoItems} setTodoItems={setTodoItems} />
+        <AddTodo
+          todoIndex={todoIndex}
+          todoItems={todoItems}
+          setTodoItems={setTodoItems}
+        />
         <TodoList todoItems={todoItems} setTodoItems={setTodoItems} />
       </div>
 

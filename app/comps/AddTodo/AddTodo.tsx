@@ -2,7 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "./AddTodo.module.css";
 
-export default function AddTodo({ todoItems, setTodoItems }) {
+export default function AddTodo({ todoIndex, todoItems, setTodoItems }) {
   const [inputValue, setInputValue] = useState("");
   const [addTodoChecked, setAddTodoChecked] = useState(false);
 
@@ -32,9 +32,16 @@ export default function AddTodo({ todoItems, setTodoItems }) {
             if (inputValue == "") {
               alert("Your todo is empty");
             } else {
+              todoIndex.current++;
+              // let newId = todoIndex
+              console.log(todoIndex);
               setTodoItems([
                 ...todoItems,
-                { checked: addTodoChecked, value: inputValue },
+                {
+                  id: todoIndex.current,
+                  checked: addTodoChecked,
+                  value: inputValue,
+                },
               ]);
               setInputValue("");
               setAddTodoChecked(false);

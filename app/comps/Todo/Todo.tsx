@@ -1,19 +1,53 @@
+import { useSortable } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 import Image from "next/image";
 import styles from "./Todo.module.css";
 
-export default function Todo({ index, item, setTodoItems, todoItems }) {
+export default function Todo({ id, index, item, setTodoItems, todoItems }) {
+  const {
+    attributes,
+    listeners,
+    setNodeRef,
+    transform,
+    transition,
+    isDragging,
+  } = useSortable({ id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+    // Add subtle visual cue when an item is actively dragged
+    opacity: isDragging ? 0.5 : 1,
+    // padding: "16px",
+    backgroundColor: "#fff",
+    // borderRadius: "4px",
+    cursor: "grab",
+  };
+
+  const handleChildClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
+
   return (
-    <div id={styles["todo-container"]}>
+    <div
+      id={id}
+      className={styles["todo-container"]}
+      ref={setNodeRef}
+      style={style}
+      {...attributes}
+      {...listeners}
+    >
       <div
         className={
           item.checked
             ? `${styles["todo-active-checked"]}`
             : `${styles["todo-checked"]}`
         }
-        onClick={() => {
+        onClick={(e) => {
+          handleChildClick(e);
           let oldItems = [...todoItems];
           oldItems[index].checked = !oldItems[index].checked;
-          console.log(!oldItems[index].checked);
+          // console.log(!oldItems[index].checked);
           setTodoItems(oldItems);
         }}
       >

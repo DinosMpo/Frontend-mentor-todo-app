@@ -1,11 +1,53 @@
-"use client";
-
 import { useState } from "react";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from "@dnd-kit/core";
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
+import {
+  restrictToVerticalAxis,
+  restrictToFirstScrollableAncestor,
+} from "@dnd-kit/modifiers";
 import styles from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
 
 export default function TodoList({ todoItems, setTodoItems }) {
+  // console.log(todoItems);
   const [activeCategorie, setActiveCategorie] = useState("all");
+
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: { distance: 10 },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
+  );
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+
+    if (over && active.id !== over.id) {
+      setTodoItems((todoItems) => {
+        const oldIndex = todoItems.findIndex((item) => item.id === active.id);
+        const newIndex = todoItems.findIndex((item) => item.id === over.id);
+
+        // arrayMove is a built-in helper utility to reorder the array
+        return arrayMove(todoItems, oldIndex, newIndex);
+      });
+    }
+    // console.log(todoItems);
+  };
 
   let itemsLeft = 0;
   let todoItemsList = [];
@@ -16,6 +58,7 @@ export default function TodoList({ todoItems, setTodoItems }) {
       return (
         <Todo
           key={key}
+          id={item.id}
           index={key}
           item={item}
           setTodoItems={setTodoItems}
@@ -30,6 +73,7 @@ export default function TodoList({ todoItems, setTodoItems }) {
         return (
           <Todo
             key={key}
+            id={item.id}
             index={key}
             item={item}
             setTodoItems={setTodoItems}
@@ -45,6 +89,7 @@ export default function TodoList({ todoItems, setTodoItems }) {
         return (
           <Todo
             key={key}
+            id={item.id}
             index={key}
             item={item}
             setTodoItems={setTodoItems}
@@ -57,14 +102,14 @@ export default function TodoList({ todoItems, setTodoItems }) {
 
   const clearCompleted = () => {
     let oldTodoItems = [...todoItems];
-    console.log("oldTodoItems");
-    console.log(oldTodoItems);
+    // console.log("oldTodoItems");
+    // console.log(oldTodoItems);
     let newTodoItems: any[] = [];
     oldTodoItems.map((todo, key) => {
       // console.log("todo");
       if (!todo.checked) {
-        console.log(key);
-        console.log(!todo.checked);
+        // console.log(key);
+        // console.log(!todo.checked);
         newTodoItems.push(todo);
       }
     });
@@ -73,11 +118,26 @@ export default function TodoList({ todoItems, setTodoItems }) {
     setTodoItems(newTodoItems);
   };
 
-  console.log(todoItems);
+  // console.log(todoItems);
 
   return (
     <div id={styles["todo-list-container"]}>
-      <div id={styles["todo-list-wrapper"]}>{todoItemsList.reverse()}</div>
+      <DndContext
+        id="todo-list-dnd"
+        sensors={sensors}
+        collisionDetection={closestCenter}
+        modifiers={[restrictToVerticalAxis, restrictToFirstScrollableAncestor]}
+        onDragEnd={handleDragEnd}
+      >
+        <SortableContext
+          items={todoItems.map((item) => item.id)}
+          strategy={verticalListSortingStrategy}
+        >
+          <div id={styles["todo-list-wrapper"]}>{todoItemsList}</div>
+        </SortableContext>
+      </DndContext>
+
+      {/* prepei na to kanw component auto */}
       <div id={styles["todo-options-container"]}>
         <div id={styles["todo-options"]}>
           <div>{itemsLeft} items left</div>
