@@ -2,9 +2,17 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding-left: 25px;
+    padding: 25px;
+    height: 65px;
     box-sizing: border-box;
     border-bottom: 1px solid hsl(233, 11%, 84%);
+    justify-content: space-between;
+}
+
+.todo-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 25px;
 }
 
 .todo-checked {
@@ -18,7 +26,6 @@
 .todo-title {
     display: flex;
     flex-direction: row;
-    padding: 23px;
     box-sizing: border-box;
 }
 
@@ -36,4 +43,19 @@
 .todo-completed {
     text-decoration: line-through;
     color: hsl(233, 11%, 84%);
+}
+
+.delete-todo-wrapper {
+    display: none;
+    cursor: pointer;
+}
+
+.delete-todo {
+    display: flex;
+}
+
+.todo-container:hover {
+    .delete-todo-wrapper {
+        display: block;
+    }
 }

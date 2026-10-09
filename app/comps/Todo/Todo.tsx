@@ -28,6 +28,12 @@ export default function Todo({ id, index, item, setTodoItems, todoItems }) {
     e.stopPropagation();
   };
 
+  const deleteTodo = (index) => {
+    const oldItems = [...todoItems];
+    oldItems.splice(index, 1);
+    setTodoItems(oldItems);
+  };
+
   return (
     <div
       id={id}
@@ -37,30 +43,46 @@ export default function Todo({ id, index, item, setTodoItems, todoItems }) {
       {...attributes}
       {...listeners}
     >
-      <div
-        className={
-          item.checked
-            ? `${styles["todo-active-checked"]}`
-            : `${styles["todo-checked"]}`
-        }
-        onClick={(e) => {
-          handleChildClick(e);
-          let oldItems = [...todoItems];
-          oldItems[index].checked = !oldItems[index].checked;
-          // console.log(!oldItems[index].checked);
-          setTodoItems(oldItems);
-        }}
-      >
-        {item.checked ? (
-          <Image alt="checked" src="./icon-check.svg" width={11} height={9} />
-        ) : (
-          ""
-        )}
+      <div className={styles["todo-wrapper"]}>
+        <div
+          className={
+            item.checked
+              ? `${styles["todo-active-checked"]}`
+              : `${styles["todo-checked"]}`
+          }
+          onClick={(e) => {
+            handleChildClick(e);
+            let oldItems = [...todoItems];
+            oldItems[index].checked = !oldItems[index].checked;
+            // console.log(!oldItems[index].checked);
+            setTodoItems(oldItems);
+          }}
+        >
+          {item.checked ? (
+            <Image alt="checked" src="./icon-check.svg" width={11} height={9} />
+          ) : (
+            ""
+          )}
+        </div>
+
+        <div
+          className={`${styles["todo-title"]} ${item.checked ? styles["todo-completed"] : ""}`}
+        >
+          {item.value}
+        </div>
       </div>
+
       <div
-        className={`${styles["todo-title"]} ${item.checked ? styles["todo-completed"] : ""}`}
+        className={styles["delete-todo-wrapper"]}
+        onClick={() => deleteTodo(index)}
       >
-        {item.value}
+        <Image
+          className={styles["delete-todo"]}
+          alt="close image"
+          src="./icon-cross.svg"
+          width={18}
+          height={18}
+        />
       </div>
     </div>
   );
