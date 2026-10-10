@@ -2,14 +2,26 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "./AddTodo.module.css";
 
-export default function AddTodo({ todoIndex, todoItems, setTodoItems }) {
+export default function AddTodo({
+  todoIndex,
+  todoItems,
+  setTodoItems,
+  activeTheme,
+}) {
   const [inputValue, setInputValue] = useState("");
   const [addTodoChecked, setAddTodoChecked] = useState(false);
 
-  console.log(inputValue);
+  // console.log(inputValue);
 
   return (
-    <div id={styles["add-todo"]}>
+    <div
+      id={styles["add-todo"]}
+      className={
+        activeTheme == "light"
+          ? styles["add-todo-light"]
+          : styles["add-todo-dark"]
+      }
+    >
       <div
         className={
           addTodoChecked
@@ -26,6 +38,11 @@ export default function AddTodo({ todoIndex, todoItems, setTodoItems }) {
       </div>
       <input
         value={inputValue}
+        className={
+          activeTheme == "light"
+            ? styles["add-todo-light"]
+            : styles["add-todo-dark"]
+        }
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={(e) => {
           if (e.key == "Enter") {
@@ -34,7 +51,7 @@ export default function AddTodo({ todoIndex, todoItems, setTodoItems }) {
             } else {
               todoIndex.current++;
               // let newId = todoIndex
-              console.log(todoIndex);
+              // console.log(todoIndex);
               setTodoItems([
                 ...todoItems,
                 {

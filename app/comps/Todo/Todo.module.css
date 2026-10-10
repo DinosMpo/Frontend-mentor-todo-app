@@ -1,61 +1,85 @@
 .todo-container {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 25px;
-    height: 65px;
-    box-sizing: border-box;
-    border-bottom: 1px solid hsl(233, 11%, 84%);
-    justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px 25px;
+  height: 65px;
+  box-sizing: border-box;
+  border-bottom: 1px solid hsl(233, 11%, 84%);
+  justify-content: space-between;
+}
+
+.todo-container-dark {
+  border-bottom: 1px solid hsl(235, 16%, 43%);
 }
 
 .todo-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 25px;
+  display: flex;
+  align-items: center;
+  gap: 25px;
 }
 
 .todo-checked {
-    width: 25px;
-    height: 25px;
-    border: 1px solid hsl(233, 11%, 84%);
-    box-sizing: border-box;
-    border-radius: 50px;
+  width: 25px;
+  height: 25px;
+  border: 1px solid hsl(233, 11%, 84%);
+  box-sizing: border-box;
+  border-radius: 50px;
 }
 
 .todo-title {
-    display: flex;
-    flex-direction: row;
-    box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.todo-title-dark {
+  color: white;
 }
 
 .todo-active-checked {
-    background: linear-gradient(hsl(192, 100%, 67%) , hsl(280, 87%, 65%));
-    width: 25px;
-    height: 25px;
-    border: 1px solid hsl(233, 11%, 84%);
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+  width: 25px;
+  height: 25px;
+  border: 1px solid hsl(233, 11%, 84%);
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .todo-completed {
-    text-decoration: line-through;
-    color: hsl(233, 11%, 84%);
+  text-decoration: line-through;
+  color: hsl(233, 11%, 84%);
+}
+
+.todo-completed-dark {
+  text-decoration: line-through;
+  color: hsl(236, 9%, 61%);
 }
 
 .delete-todo-wrapper {
-    display: none;
-    cursor: pointer;
+  display: none;
+  cursor: pointer;
 }
 
 .delete-todo {
-    display: flex;
+  display: flex;
 }
 
 .todo-container:hover {
-    .delete-todo-wrapper {
-        display: block;
-    }
+  .delete-todo-wrapper {
+    display: block;
+  }
+}
+
+.aaa {
+  background-color: hsl(235, 21%, 11%);
+  background-color: hsl(235, 24%, 19%);
+  background-color: hsl(234, 39%, 85%);
+  background-color: hsl(236, 33%, 92%);
+  background-color: hsl(235, 16%, 43%);
+  background-color: hsl(233, 14%, 35%);
+  background-color: hsl(237, 14%, 26%);
+  background-color: hsl(236, 9%, 61%);
 }

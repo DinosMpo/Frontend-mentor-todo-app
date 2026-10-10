@@ -3,7 +3,14 @@ import { CSS } from "@dnd-kit/utilities";
 import Image from "next/image";
 import styles from "./Todo.module.css";
 
-export default function Todo({ id, index, item, setTodoItems, todoItems }) {
+export default function Todo({
+  id,
+  index,
+  item,
+  setTodoItems,
+  todoItems,
+  activeTheme,
+}) {
   const {
     attributes,
     listeners,
@@ -19,9 +26,10 @@ export default function Todo({ id, index, item, setTodoItems, todoItems }) {
     // Add subtle visual cue when an item is actively dragged
     opacity: isDragging ? 0.5 : 1,
     // padding: "16px",
-    backgroundColor: "#fff",
+    backgroundColor: activeTheme == "light" ? "#fff" : "hsl(235, 24%, 19%)",
     // borderRadius: "4px",
     cursor: "grab",
+    // color: activeTheme == "light" ? "hsl(235, 24%, 19%)" : "#fff",
   };
 
   const handleChildClick = (e: React.MouseEvent) => {
@@ -37,7 +45,7 @@ export default function Todo({ id, index, item, setTodoItems, todoItems }) {
   return (
     <div
       id={id}
-      className={styles["todo-container"]}
+      className={`${styles["todo-container"]} ${activeTheme == "light" ? "" : styles["todo-container-dark"]}`}
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -66,7 +74,7 @@ export default function Todo({ id, index, item, setTodoItems, todoItems }) {
         </div>
 
         <div
-          className={`${styles["todo-title"]} ${item.checked ? styles["todo-completed"] : ""}`}
+          className={`${styles["todo-title"]} ${item.checked ? (activeTheme == "light" ? styles["todo-completed"] : styles["todo-completed-dark"]) : ""} ${activeTheme == "light" ? "" : styles["todo-title-dark"]}`}
         >
           {item.value}
         </div>
