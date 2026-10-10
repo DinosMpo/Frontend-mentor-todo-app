@@ -1,42 +1,41 @@
-#todo-list-container {
+#todo-list {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 450px;
-  background-color: white;
+  height: 440px;
   border-radius: 5px;
   margin-top: 25px;
-  box-shadow: 5px 5px 15px grey;
+  box-shadow: 5px 5px 15px hsl(237, 14%, 26%);
   overflow-y: scroll;
   position: relative;
+}
+
+.todo-list-container {
+  height: 390px;
+  overflow-y: scroll;
+  box-sizing: border-box;
+
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 450px;
+  border-radius: 5px;
+  margin-top: 25px;
+  box-shadow: 5px 5px 15px hsl(237, 14%, 26%);
+  overflow-y: scroll;
+  position: relative; */
+}
+
+.todo-list-container-light {
+  background-color: white;
+}
+
+.todo-list-container-dark {
+  background-color: hsl(235, 24%, 19%);
 }
 
 #todo-list-wrapper {
   overflow-y: scroll;
 }
 
-#todo-options {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  font-size: 14px;
-  box-sizing: border-box;
-  padding: 16px;
-  color: grey;
-}
-
-#todo-options-container {
-  width: 100%;
-}
-
-#todo-options-wrapper {
-  display: flex;
-  width: 100%;
-  max-width: 164px;
-  justify-content: space-between;
-}
-
-#active-all, #active-active, #active-completed {
-  color: hsl(235, 19%, 35%);
-  font-weight: 700;
-}
+#todo-list-dnd {}

@@ -20,8 +20,9 @@ import {
 } from "@dnd-kit/modifiers";
 import styles from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
+import TodoOptions from "../TodoOptions/TodoOptions";
 
-export default function TodoList({ todoItems, setTodoItems }) {
+export default function TodoList({ todoItems, setTodoItems, activeTheme }) {
   // console.log(todoItems);
   const [activeCategorie, setActiveCategorie] = useState("all");
 
@@ -63,6 +64,7 @@ export default function TodoList({ todoItems, setTodoItems }) {
           item={item}
           setTodoItems={setTodoItems}
           todoItems={todoItems}
+          activeTheme={activeTheme}
         />
       );
     });
@@ -78,6 +80,7 @@ export default function TodoList({ todoItems, setTodoItems }) {
             item={item}
             setTodoItems={setTodoItems}
             todoItems={todoItems}
+            activeTheme={activeTheme}
           />
         );
       }
@@ -94,6 +97,7 @@ export default function TodoList({ todoItems, setTodoItems }) {
             item={item}
             setTodoItems={setTodoItems}
             todoItems={todoItems}
+            activeTheme={activeTheme}
           />
         );
       }
@@ -102,75 +106,45 @@ export default function TodoList({ todoItems, setTodoItems }) {
 
   const clearCompleted = () => {
     let oldTodoItems = [...todoItems];
-    // console.log("oldTodoItems");
-    // console.log(oldTodoItems);
     let newTodoItems: any[] = [];
     oldTodoItems.map((todo, key) => {
-      // console.log("todo");
       if (!todo.checked) {
-        // console.log(key);
-        // console.log(!todo.checked);
         newTodoItems.push(todo);
       }
     });
-
-    // console.log(newTodoItems);
     setTodoItems(newTodoItems);
   };
 
-  // console.log(todoItems);
-
   return (
-    <div id={styles["todo-list-container"]}>
-      <DndContext
-        id="todo-list-dnd"
-        sensors={sensors}
-        collisionDetection={closestCenter}
-        modifiers={[restrictToVerticalAxis, restrictToFirstScrollableAncestor]}
-        onDragEnd={handleDragEnd}
+    <div id={styles["todo-list"]}>
+      <div
+        className={`${styles["todo-list-container"]} ${activeTheme == "light" ? styles["todo-list-container-light"] : styles["todo-list-container-dark"]}`}
       >
-        <SortableContext
-          items={todoItems.map((item) => item.id)}
-          strategy={verticalListSortingStrategy}
+        <DndContext
+          id="todo-list-dnd"
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          modifiers={[
+            restrictToVerticalAxis,
+            restrictToFirstScrollableAncestor,
+          ]}
+          onDragEnd={handleDragEnd}
         >
-          <div id={styles["todo-list-wrapper"]}>{todoItemsList}</div>
-        </SortableContext>
-      </DndContext>
-
-      {/* prepei na to kanw component auto */}
-      <div id={styles["todo-options-container"]}>
-        <div id={styles["todo-options"]}>
-          <div>{itemsLeft} items left</div>
-          <div id={styles["todo-options-wrapper"]}>
-            <div
-              id={activeCategorie == "all" ? `${styles["active-all"]}` : ""}
-              onClick={() => setActiveCategorie("all")}
-            >
-              All
-            </div>
-            <div
-              id={
-                activeCategorie == "active" ? `${styles["active-active"]}` : ""
-              }
-              onClick={() => setActiveCategorie("active")}
-            >
-              Active
-            </div>
-            <div
-              id={
-                activeCategorie == "completed"
-                  ? `${styles["active-completed"]}`
-                  : ""
-              }
-              onClick={() => setActiveCategorie("completed")}
-            >
-              Completed
-            </div>
-          </div>
-
-          <div onClick={() => clearCompleted()}>Clear Comleted</div>
-        </div>
+          <SortableContext
+            items={todoItems.map((item) => item.id)}
+            strategy={verticalListSortingStrategy}
+          >
+            <div id={styles["todo-list-wrapper"]}>{todoItemsList}</div>
+          </SortableContext>
+        </DndContext>
       </div>
+
+      <TodoOptions
+        activeCategorie={activeCategorie}
+        setActiveCategorie={setActiveCategorie}
+        clearCompleted={clearCompleted}
+        itemsLeft={itemsLeft}
+      />
     </div>
   );
 }

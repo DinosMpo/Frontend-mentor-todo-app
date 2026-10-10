@@ -1,0 +1,29 @@
+#todo-options-container {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#todo-options {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 16px;
+  color: grey;
+}
+
+#todo-options-wrapper {
+  display: flex;
+  width: 100%;
+  max-width: 164px;
+  justify-content: space-between;
+}
+
+#active-all, #active-active, #active-completed {
+  color: hsl(235, 19%, 35%);
+  font-weight: 700;
+}

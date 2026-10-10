@@ -5,6 +5,13 @@
   height: 100dvh;
   align-items: center;
   position: relative;
+  /* background-color: red; */
+  z-index: 1;
+}
+
+.main-container-dark {
+  background-color: hsl(235, 21%, 11%);
+
 }
 
 #bg-image {
@@ -15,6 +22,10 @@
   position: absolute;
   /* bottom: 0; */
   z-index: -1;
+}
+
+#theme {
+
 }
 
 #todo-container {
@@ -37,4 +48,22 @@
   font-size: 42px;
   font-weight: 700;
   color: white;
+}
+
+.drag-and-drop-info {
+  margin-top: 50px;
+
+}
+
+.drag-and-drop-info-dark {
+  color: hsl(235, 16%, 43%);
+}
+
+#footer-dark {
+  color: hsl(235, 16%, 43%);
+  /* margin-top: 50px; */
+}
+
+#footer-dark a {
+  color: hsl(233, 7%, 51%);
 }

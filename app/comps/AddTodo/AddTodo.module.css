@@ -5,9 +5,18 @@
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  background-color: white;
+  /* background-color: white; */
   box-sizing: border-box;
   margin-top: 40px;
+}
+
+.add-todo-light {
+  background-color: white;
+}
+
+.add-todo-dark {
+  background-color: hsl(235, 24%, 19%);
+  color: white;
 }
 
 .active-check-circle {
