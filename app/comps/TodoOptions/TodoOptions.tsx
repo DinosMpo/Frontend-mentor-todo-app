@@ -10,7 +10,7 @@ export default function TodoOptions({
   return (
     <div id={styles["todo-options-container"]}>
       <div id={styles["todo-options"]}>
-        <div>{itemsLeft} items left</div>
+        <div id={styles["todo-items-left-wrapper"]}>{itemsLeft} items left</div>
         <div id={styles["todo-options-wrapper"]}>
           <div
             id={activeCategorie == "all" ? `${styles["active-all"]}` : ""}
@@ -36,7 +36,9 @@ export default function TodoOptions({
           </div>
         </div>
 
-        <div onClick={() => clearCompleted()}>Clear Comleted</div>
+        <div id={styles["todo-clear-wrapper"]} onClick={() => clearCompleted()}>
+          Clear Comleted
+        </div>
       </div>
     </div>
   );
