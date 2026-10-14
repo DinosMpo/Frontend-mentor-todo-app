@@ -1,0 +1,54 @@
+#todo-options-filter-container {
+  display: flex;
+  width: 33%;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+#todo-options-filter-mobile-container {
+  display: none;
+}
+
+#todo-options-filter-mobile-wrapper {
+  display: flex;
+  width: 165px;
+  justify-content: space-between;
+  font-size: 0.8em;
+  color: hsl(235, 19%, 35%);
+}
+
+#todo-options-filter-mobile-wrapper div {
+  cursor: pointer;
+}
+
+#active-all,
+#active-active,
+#active-completed {
+  color: hsl(220, 98%, 61%);
+  font-weight: 700;
+}
+
+.todo-options-filter-mobile-container-light {
+  background-color: white;
+}
+
+.todo-options-filter-mobile-container-dark {
+  background-color: hsl(235, 24%, 19%);
+}
+
+
+@media only screen and (max-width: 600px) {
+  #todo-options-filter-container {
+    display: none;
+  }
+
+  #todo-options-filter-mobile-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    height: 50px;
+    border-radius: 5px;
+    box-shadow: 5px 5px 15px hsl(237, 14%, 26%);
+  }
+}

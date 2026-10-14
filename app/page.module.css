@@ -5,13 +5,11 @@
   height: 100dvh;
   align-items: center;
   position: relative;
-  /* background-color: red; */
   z-index: 1;
 }
 
 .main-container-dark {
   background-color: hsl(235, 21%, 11%);
-
 }
 
 #bg-image {
@@ -20,20 +18,13 @@
   max-width: 1440px;
   max-height: 300px;
   position: absolute;
-  /* bottom: 0; */
   z-index: -1;
-}
-
-#theme {
-
 }
 
 #todo-container {
   max-width: 540px;
   width: 100%;
-  /* height: 605px; */
   max-height: 100%;
-  /* border: 1px solid black; */
   margin-top: 80px;
 }
 
@@ -52,6 +43,7 @@
 
 .drag-and-drop-info {
   margin-top: 50px;
+    color: hsl(235, 16%, 43%);
 
 }
 
@@ -61,9 +53,52 @@
 
 #footer-dark {
   color: hsl(235, 16%, 43%);
-  /* margin-top: 50px; */
 }
 
 #footer-dark a {
   color: hsl(233, 7%, 51%);
+}
+
+#mobile-bg-image {
+  display: none;
+  width: 100%;
+  height: 100%;
+  max-width: 375px;
+  max-height: 200px;
+  position: absolute;
+  z-index: -1;
+}
+
+@media only screen and (max-width: 600px) {
+  #main-container {
+    max-width: 375px;
+    margin: 0px auto;
+    /* border: 2px solid black; */
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100dvh;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  #bg-image {
+    display: none;
+  }
+
+  #mobile-bg-image {
+    display: block;
+  }
+
+  #todo-container {
+    max-width: 328px;
+    margin-top: 45px;
+  }
+
+  #todo-title {
+    font-size: 28px;
+  }
 }

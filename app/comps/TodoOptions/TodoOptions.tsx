@@ -1,4 +1,5 @@
 import React from "react";
+import TodoOptionsFilters from "../TodoOptionsFilters/TodoOptionsFilters";
 import styles from "./TodoOptions.module.css";
 
 export default function TodoOptions({
@@ -6,38 +7,25 @@ export default function TodoOptions({
   setActiveCategorie,
   clearCompleted,
   itemsLeft,
+  activeTheme,
 }) {
   return (
-    <div id={styles["todo-options-container"]}>
+    <div
+      id={styles["todo-options-container"]}
+      className={`${activeTheme == "light" ? styles["todo-options-container-light"] : styles["todo-options-container-dark"]}`}
+    >
       <div id={styles["todo-options"]}>
         <div id={styles["todo-items-left-wrapper"]}>{itemsLeft} items left</div>
-        <div id={styles["todo-options-wrapper"]}>
-          <div
-            id={activeCategorie == "all" ? `${styles["active-all"]}` : ""}
-            onClick={() => setActiveCategorie("all")}
-          >
-            All
-          </div>
-          <div
-            id={activeCategorie == "active" ? `${styles["active-active"]}` : ""}
-            onClick={() => setActiveCategorie("active")}
-          >
-            Active
-          </div>
-          <div
-            id={
-              activeCategorie == "completed"
-                ? `${styles["active-completed"]}`
-                : ""
-            }
-            onClick={() => setActiveCategorie("completed")}
-          >
-            Completed
-          </div>
-        </div>
+
+        <TodoOptionsFilters
+          activeCategorie={activeCategorie}
+          setActiveCategorie={setActiveCategorie}
+          design={"desktop"}
+          activeTheme={activeTheme}
+        />
 
         <div id={styles["todo-clear-wrapper"]} onClick={() => clearCompleted()}>
-          Clear Comleted
+          Clear Completed
         </div>
       </div>
     </div>

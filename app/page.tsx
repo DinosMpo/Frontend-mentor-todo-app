@@ -5,12 +5,14 @@ import Image from "next/image";
 import styles from "./page.module.css";
 import AddTodo from "./comps/AddTodo/AddTodo";
 import TodoList from "./comps/TodoList/TodoList";
+import TodoListOptionsFilters from "./comps/TodoOptionsFilters/TodoOptionsFilters";
 
 export default function Home() {
   const todoIndex = useRef(5);
   // console.log("todoIndex.current");
   // console.log(todoIndex.current.valueOf());
   const [activeTheme, setActiveTheme] = useState("light");
+  const [activeCategorie, setActiveCategorie] = useState("all");
 
   const [todoItems, setTodoItems] = useState([
     {
@@ -51,7 +53,7 @@ export default function Home() {
       className={activeTheme == "light" ? "" : styles["main-container-dark"]}
     >
       <Image
-        alt="bg desktop"
+        alt="backgroung image desktop"
         src={
           activeTheme == "light"
             ? "/bg-desktop-light.jpg"
@@ -60,6 +62,19 @@ export default function Home() {
         width={1440}
         height={300}
         id={styles["bg-image"]}
+        loading="eager"
+      />
+
+      <Image
+        alt="backgroung image mobile"
+        src={
+          activeTheme == "light"
+            ? "/bg-mobile-light.jpg"
+            : "/bg-mobile-dark.jpg"
+        }
+        width={375}
+        height={200}
+        id={styles["mobile-bg-image"]}
         loading="eager"
       />
 
@@ -91,8 +106,17 @@ export default function Home() {
           activeTheme={activeTheme}
         />
         <TodoList
+          activeCategorie={activeCategorie}
+          setActiveCategorie={setActiveCategorie}
           todoItems={todoItems}
           setTodoItems={setTodoItems}
+          activeTheme={activeTheme}
+        />
+
+        <TodoListOptionsFilters
+          activeCategorie={activeCategorie}
+          setActiveCategorie={setActiveCategorie}
+          design={"mobile"}
           activeTheme={activeTheme}
         />
       </div>
