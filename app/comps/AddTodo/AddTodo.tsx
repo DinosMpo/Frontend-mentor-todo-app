@@ -36,12 +36,13 @@ export default function AddTodo({
           ""
         )}
       </div>
+
       <input
         value={inputValue}
         className={
           activeTheme == "light"
-            ? styles["add-todo-light"]
-            : styles["add-todo-dark"]
+            ? `${styles["add-todo-input"]} ${styles["add-todo-light"]}`
+            : `${styles["add-todo-input"]} ${styles["add-todo-dark"]}`
         }
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={(e) => {

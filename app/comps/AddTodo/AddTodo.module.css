@@ -5,7 +5,6 @@
   flex-direction: row;
   align-items: center;
   border-radius: 5px;
-  /* background-color: white; */
   box-sizing: border-box;
   margin-top: 40px;
 }
@@ -20,7 +19,7 @@
 }
 
 .active-check-circle {
-  background: linear-gradient(hsl(192, 100%, 67%) , hsl(280, 87%, 65%));
+  background: linear-gradient(hsl(192, 100%, 67%), hsl(280, 87%, 65%));
   width: 29px;
   height: 25px;
   border: 1px solid hsl(236, 9%, 61%);
@@ -35,11 +34,12 @@
   width: 29px;
   height: 25px;
   border: 1px solid hsl(236, 9%, 61%);
-  border-radius: 50px;
+  box-sizing: border-box;
+  border-radius: 30px;
   margin: 25px;
 }
 
-#add-todo input {
+.add-todo-input {
   font-size: 16px;
   width: 100%;
   height: 100%;
@@ -47,5 +47,32 @@
   outline: 0px;
   border: 0px;
   padding: 0px;
-  font-family: 'Josefin Sans';
+  font-family: "Josefin Sans";
+}
+
+@media only screen and (max-width: 600px) {
+  #add-todo {
+    height: 48px;
+    margin-top: 30px;
+    padding: 0px 20px;
+    gap: 10px;
+  }
+
+  .check-circle {
+    width: 20px;
+    height: 20px;
+    margin: 0px;    
+  }
+
+  .active-check-circle {
+    width: 20px;
+    height: 20px;
+  }
+
+  .add-todo-input {
+    max-width: 250px;
+    width: 100%;
+    font-size: 0.75em;
+    /* font-size: 10px; */
+  }
 }

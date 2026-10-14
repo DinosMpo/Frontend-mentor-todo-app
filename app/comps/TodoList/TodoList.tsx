@@ -22,9 +22,14 @@ import styles from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
 import TodoOptions from "../TodoOptions/TodoOptions";
 
-export default function TodoList({ todoItems, setTodoItems, activeTheme }) {
+export default function TodoList({
+  activeCategorie,
+  setActiveCategorie,
+  todoItems,
+  setTodoItems,
+  activeTheme,
+}) {
   // console.log(todoItems);
-  const [activeCategorie, setActiveCategorie] = useState("all");
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -144,6 +149,7 @@ export default function TodoList({ todoItems, setTodoItems, activeTheme }) {
         setActiveCategorie={setActiveCategorie}
         clearCompleted={clearCompleted}
         itemsLeft={itemsLeft}
+        activeTheme={activeTheme}
       />
     </div>
   );
