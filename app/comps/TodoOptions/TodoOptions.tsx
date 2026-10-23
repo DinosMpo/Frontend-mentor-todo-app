@@ -1,19 +1,25 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 import TodoOptionsFilters from "../TodoOptionsFilters/TodoOptionsFilters";
 import styles from "./TodoOptions.module.css";
+
+type props = {
+  activeCategorie: string;
+  setActiveCategorie: React.Dispatch<SetStateAction<string>>;
+  clearCompleted: () => void;
+  itemsLeft: number;
+};
 
 export default function TodoOptions({
   activeCategorie,
   setActiveCategorie,
   clearCompleted,
   itemsLeft,
-  activeTheme,
-}) {
+}: props) {
+  const { theme, toggle } = useTheme();
+
   return (
-    <div
-      id={styles["todo-options-container"]}
-      className={`${activeTheme == "light" ? styles["todo-options-container-light"] : styles["todo-options-container-dark"]}`}
-    >
+    <div id={styles["todo-options-container"]}>
       <div id={styles["todo-options"]}>
         <div id={styles["todo-items-left-wrapper"]}>{itemsLeft} items left</div>
 
@@ -21,7 +27,6 @@ export default function TodoOptions({
           activeCategorie={activeCategorie}
           setActiveCategorie={setActiveCategorie}
           design={"desktop"}
-          activeTheme={activeTheme}
         />
 
         <div id={styles["todo-clear-wrapper"]} onClick={() => clearCompleted()}>
