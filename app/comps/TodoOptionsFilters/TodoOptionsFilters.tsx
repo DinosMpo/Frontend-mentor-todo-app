@@ -1,12 +1,20 @@
-import React from "react";
+import { Dispatch, SetStateAction } from "react";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
 import styles from "./TodoOptionsFilters.module.css";
+
+type props = {
+  activeCategorie: string;
+  setActiveCategorie: Dispatch<SetStateAction<string>>;
+  design: string;
+};
 
 export default function TodoOptionsFilters({
   activeCategorie,
   setActiveCategorie,
   design,
-  activeTheme,
-}) {
+}: props) {
+  const { theme, toggle } = useTheme();
+
   return design == "desktop" ? (
     <div id={styles["todo-options-filter-container"]}>
       <div
@@ -33,7 +41,7 @@ export default function TodoOptionsFilters({
   ) : (
     <div
       id={styles["todo-options-filter-mobile-container"]}
-      className={`${activeTheme == "light" ? styles["todo-options-filter-mobile-container-light"] : styles["todo-options-filter-mobile-container-dark"]}`}
+      className={`${theme == "light" ? styles["todo-options-filter-mobile-container-light"] : styles["todo-options-filter-mobile-container-dark"]}`}
     >
       <div id={styles["todo-options-filter-mobile-wrapper"]}>
         <div

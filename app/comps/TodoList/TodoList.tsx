@@ -1,4 +1,6 @@
-import { useState } from "react";
+"use client";
+
+import { Dispatch, SetStateAction } from "react";
 import {
   DndContext,
   closestCenter,
@@ -21,15 +23,24 @@ import {
 import styles from "./TodoList.module.css";
 import Todo from "../Todo/Todo";
 import TodoOptions from "../TodoOptions/TodoOptions";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+
+type props = {
+  activeCategorie: string;
+  setActiveCategorie: Dispatch<SetStateAction<string>>;
+  todoItems: { id: string; value: string; checked: boolean }[];
+  setTodoItems: Dispatch<
+    SetStateAction<{ id: string; value: string; checked: boolean }[]>
+  >;
+};
 
 export default function TodoList({
   activeCategorie,
   setActiveCategorie,
   todoItems,
   setTodoItems,
-  activeTheme,
-}) {
-  // console.log(todoItems);
+}: props) {
+  const { theme, toggle } = useTheme();
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -52,24 +63,22 @@ export default function TodoList({
         return arrayMove(todoItems, oldIndex, newIndex);
       });
     }
-    // console.log(todoItems);
   };
 
   let itemsLeft = 0;
-  let todoItemsList = [];
+  let todoItemsList: (React.ReactElement | undefined)[] = [];
 
   if (activeCategorie == "all") {
     todoItemsList = todoItems.map((item, key) => {
       if (!item.checked) itemsLeft++;
       return (
         <Todo
-          key={key}
+          key={item.id}
           id={item.id}
           index={key}
           item={item}
           setTodoItems={setTodoItems}
           todoItems={todoItems}
-          activeTheme={activeTheme}
         />
       );
     });
@@ -79,13 +88,12 @@ export default function TodoList({
         itemsLeft++;
         return (
           <Todo
-            key={key}
+            key={item.id}
             id={item.id}
             index={key}
             item={item}
             setTodoItems={setTodoItems}
             todoItems={todoItems}
-            activeTheme={activeTheme}
           />
         );
       }
@@ -96,13 +104,12 @@ export default function TodoList({
         itemsLeft++;
         return (
           <Todo
-            key={key}
+            key={item.id}
             id={item.id}
             index={key}
             item={item}
             setTodoItems={setTodoItems}
             todoItems={todoItems}
-            activeTheme={activeTheme}
           />
         );
       }
@@ -122,9 +129,7 @@ export default function TodoList({
 
   return (
     <div id={styles["todo-list"]}>
-      <div
-        className={`${styles["todo-list-container"]} ${activeTheme == "light" ? styles["todo-list-container-light"] : styles["todo-list-container-dark"]}`}
-      >
+      <div className={styles["todo-list-container"]}>
         <DndContext
           id="todo-list-dnd"
           sensors={sensors}
@@ -149,7 +154,6 @@ export default function TodoList({
         setActiveCategorie={setActiveCategorie}
         clearCompleted={clearCompleted}
         itemsLeft={itemsLeft}
-        activeTheme={activeTheme}
       />
     </div>
   );

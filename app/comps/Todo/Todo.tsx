@@ -1,7 +1,21 @@
+"use client";
+
+import { Dispatch, SetStateAction } from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import Image from "next/image";
 import styles from "./Todo.module.css";
+import { useTheme } from "../ThemeProvider/ThemeProvider";
+
+type props = {
+  id: string;
+  index: number;
+  item: { id: string; value: string; checked: boolean };
+  setTodoItems: Dispatch<
+    SetStateAction<{ id: string; value: string; checked: boolean }[]>
+  >;
+  todoItems: { id: string; value: string; checked: boolean }[];
+};
 
 export default function Todo({
   id,
@@ -9,8 +23,7 @@ export default function Todo({
   item,
   setTodoItems,
   todoItems,
-  activeTheme,
-}) {
+}: props) {
   const {
     attributes,
     listeners,
@@ -20,13 +33,15 @@ export default function Todo({
     isDragging,
   } = useSortable({ id });
 
+  const { theme, toggle } = useTheme();
+
   const style = {
     transform: CSS.Transform.toString(transform),
-    transition,
+    transition: "0.2s",
     // Add subtle visual cue when an item is actively dragged
     opacity: isDragging ? 0.5 : 1,
     // padding: "16px",
-    backgroundColor: activeTheme == "light" ? "#fff" : "hsl(235, 24%, 19%)",
+    backgroundColor: theme == "light" ? "#fff" : "hsl(235, 24%, 19%)",
     // borderRadius: "4px",
     cursor: "grab",
     // color: activeTheme == "light" ? "hsl(235, 24%, 19%)" : "#fff",
@@ -36,7 +51,7 @@ export default function Todo({
     e.stopPropagation();
   };
 
-  const deleteTodo = (index) => {
+  const deleteTodo = (index: number) => {
     const oldItems = [...todoItems];
     oldItems.splice(index, 1);
     setTodoItems(oldItems);
@@ -45,7 +60,7 @@ export default function Todo({
   return (
     <div
       id={id}
-      className={`${styles["todo-container"]} ${activeTheme == "light" ? "" : styles["todo-container-dark"]}`}
+      className={styles["todo-container"]}
       ref={setNodeRef}
       style={style}
       {...attributes}
@@ -62,7 +77,6 @@ export default function Todo({
             handleChildClick(e);
             let oldItems = [...todoItems];
             oldItems[index].checked = !oldItems[index].checked;
-            // console.log(!oldItems[index].checked);
             setTodoItems(oldItems);
           }}
         >
@@ -74,7 +88,7 @@ export default function Todo({
         </div>
 
         <div
-          className={`${styles["todo-title"]} ${item.checked ? (activeTheme == "light" ? styles["todo-completed"] : styles["todo-completed-dark"]) : ""} ${activeTheme == "light" ? "" : styles["todo-title-dark"]}`}
+          className={`${styles["todo-title"]} ${item.checked ? (theme == "light" ? styles["todo-completed"] : styles["todo-completed-dark"]) : ""} ${theme == "light" ? "" : styles["todo-title-dark"]}`}
         >
           {item.value}
         </div>

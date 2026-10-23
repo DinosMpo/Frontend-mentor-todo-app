@@ -1,27 +1,20 @@
-import { useState } from "react";
+import { useState, Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import styles from "./AddTodo.module.css";
 
-export default function AddTodo({
-  todoIndex,
-  todoItems,
-  setTodoItems,
-  activeTheme,
-}) {
-  const [inputValue, setInputValue] = useState("");
-  const [addTodoChecked, setAddTodoChecked] = useState(false);
+type props = {
+  todoItems: { id: string; value: string; checked: boolean }[];
+  setTodoItems: Dispatch<
+    SetStateAction<{ id: string; value: string; checked: boolean }[]>
+  >;
+};
 
-  // console.log(inputValue);
+export default function AddTodo({ todoItems, setTodoItems }: props) {
+  const [inputValue, setInputValue] = useState<string>("");
+  const [addTodoChecked, setAddTodoChecked] = useState<boolean>(false);
 
   return (
-    <div
-      id={styles["add-todo"]}
-      className={
-        activeTheme == "light"
-          ? styles["add-todo-light"]
-          : styles["add-todo-dark"]
-      }
-    >
+    <div id={styles["add-todo"]}>
       <div
         className={
           addTodoChecked
@@ -31,7 +24,7 @@ export default function AddTodo({
         onClick={() => setAddTodoChecked((preV) => !preV)}
       >
         {addTodoChecked ? (
-          <Image alt="checked" src="./icon-check.svg" width={11} height={9} />
+          <Image alt="checked" src="/icon-check.svg" width={11} height={9} />
         ) : (
           ""
         )}
@@ -39,24 +32,17 @@ export default function AddTodo({
 
       <input
         value={inputValue}
-        className={
-          activeTheme == "light"
-            ? `${styles["add-todo-input"]} ${styles["add-todo-light"]}`
-            : `${styles["add-todo-input"]} ${styles["add-todo-dark"]}`
-        }
+        className={styles["add-todo-input"]}
         onChange={(e) => setInputValue(e.target.value)}
         onKeyDown={(e) => {
           if (e.key == "Enter") {
-            if (inputValue == "") {
+            if (inputValue.trim() === "") {
               alert("Your todo is empty");
             } else {
-              todoIndex.current++;
-              // let newId = todoIndex
-              // console.log(todoIndex);
               setTodoItems([
                 ...todoItems,
                 {
-                  id: todoIndex.current,
+                  id: crypto.randomUUID(),
                   checked: addTodoChecked,
                   value: inputValue,
                 },
