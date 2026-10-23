@@ -1,4 +1,24 @@
+:root,
+[data-theme='light'] {
+    /* --bg: #ffffff; */
+    --bg: #ffffff;
+    --text: #111111;
+    --text2: hsl(233, 11%, 84%);
+    --card: #f4f4f5;
+    --border: #d4d4d8;
+    --border-bottom: hsl(233, 11%, 84%);
+}
+
+[data-theme='dark'] {
+    --bodyBg: hsl(235, 21%, 11%);
+    --bg: hsl(235, 24%, 19%);
+    --text: #ffffff;
+    --text2: hsl(236, 9%, 61%);
+    --card: #f4f4f5;
+    --border: #d4d4d8;
+    --border-bottom: hsl(235, 16%, 43%);
+}
+
 body {
     margin: 0px;
-    background-color: hsl(0, 0%, 98%);
 }

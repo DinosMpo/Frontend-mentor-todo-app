@@ -7,15 +7,9 @@
   border-radius: 5px;
   box-sizing: border-box;
   margin-top: 40px;
-}
-
-.add-todo-light {
-  background-color: white;
-}
-
-.add-todo-dark {
-  background-color: hsl(235, 24%, 19%);
-  color: white;
+  background-color: var(--bg);
+  color: var(--text);
+  transition: 0.2s;
 }
 
 .active-check-circle {
@@ -48,6 +42,9 @@
   border: 0px;
   padding: 0px;
   font-family: "Josefin Sans";
+  background-color: var(--bg);
+  color: var(--text);
+  transition: 0.2s;
 }
 
 @media only screen and (max-width: 600px) {
@@ -73,6 +70,5 @@
     max-width: 250px;
     width: 100%;
     font-size: 0.75em;
-    /* font-size: 10px; */
   }
 }

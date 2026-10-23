@@ -14,24 +14,8 @@
   height: 390px;
   overflow-y: scroll;
   box-sizing: border-box;
-
-  /* display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 450px;
-  border-radius: 5px;
-  margin-top: 25px;
-  box-shadow: 5px 5px 15px hsl(237, 14%, 26%);
-  overflow-y: scroll;
-  position: relative; */
-}
-
-.todo-list-container-light {
-  background-color: white;
-}
-
-.todo-list-container-dark {
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--bg);
+  transition: 0.2s;
 }
 
 #todo-list-wrapper {

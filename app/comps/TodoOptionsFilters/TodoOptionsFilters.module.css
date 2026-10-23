@@ -29,11 +29,11 @@
 }
 
 .todo-options-filter-mobile-container-light {
-  background-color: white;
+  background-color: var(--bg);
 }
 
 .todo-options-filter-mobile-container-dark {
-  background-color: hsl(235, 24%, 19%);
+  background-color: var(--bg);
 }
 
 
